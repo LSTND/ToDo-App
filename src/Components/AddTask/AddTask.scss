@@ -1,0 +1,53 @@
+.newTask_btn {
+  font-size: 15px;
+  border-radius: 7px;
+  border: none;
+  padding: 12px 20px;
+  line-height: 17px;
+  margin-top: 30px;
+  margin-left: 17px;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  .modal_container {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+
+    .modal_closeBtn {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      display: inline-flex;
+      border: none;
+      border-radius: 2px;
+      padding: 5px 12px;
+    }
+    .modal_inputTask {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      width: 70%;
+      border-radius: 3px;
+      height: 35px;
+      border: 1px solid #aa8bff;
+      margin-bottom: 10px;
+      padding-left: 10px;
+      margin-top: 27px;
+      color: #351752;
+    }
+  }
+}

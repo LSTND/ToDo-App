@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 2px solid #b8b8b8d9;
+
+  .header_logo {
+    margin-right: auto;
+    max-width: 80px;
+    max-height: 80px;
+    margin: 5px;
+  }
+  .header_date {
+    margin-left: auto;
+    margin-top: auto;
+    font-weight: 700;
+    color: #351752cc;
+  }
+}
