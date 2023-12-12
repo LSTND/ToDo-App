@@ -1,5 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useDispatch} from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import { addTask } from "../../redux/actions";
@@ -77,4 +78,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default memo(AddTask);

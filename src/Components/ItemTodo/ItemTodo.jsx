@@ -1,13 +1,16 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { memo, useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { taskEdit, taskDelete, taskCompleted } from "../../redux/actions";
+import { ItemViewModeContext } from "../../App";
 import Button from "../Button/Button";
 import "./ItemTodo.scss";
 import "../AddTask/AddTask.scss";
 
-const ItemTodo = ({ todo }) => {
+const ItemTodo = memo(({ todo }) => {
+  const { viewMode } = useContext(ItemViewModeContext);
   const [editTaskId, setEditTaskId] = useState(0);
   const [editTask, setEditTask] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -56,17 +59,25 @@ const ItemTodo = ({ todo }) => {
   };
 
   return (
-    <div className={`itemTodo ${todo.completed ? "completed" : ""}`}>
+    <div
+      className={`itemTodo ${todo.completed ? "completed" : ""} ${
+        viewMode === "grid" ? "gridView" : ""
+      }`}
+    >
       {/* Conditional rendering depending on editing mode for input  */}
       {isEditing && editTaskId === todo.id ? (
         <div className="editTask_container">
           <input
-            className="editTask_input"
+            className={`editTask_input ${
+              viewMode === "grid" ? "gridView" : ""
+            }`}
             type="text"
             value={editTask}
             onChange={(e) => setEditTask(e.target.value)}
           />
-          <div className="editTask_btn">
+          <div
+            className={`editTask_btn ${viewMode === "grid" ? "gridView" : ""}`}
+          >
             <Button
               text="Save"
               className="newTask_btn btn"
@@ -81,10 +92,14 @@ const ItemTodo = ({ todo }) => {
         </div>
       ) : (
         <>
-          <p className={`itemTodo_title ${todo.completed ? "completed" : ""}`}>
+          <p
+            className={`itemTodo_title ${todo.completed ? "completed" : ""}${
+              viewMode === "grid" ? "gridView" : ""
+            }`}
+          >
             {todo.title}
           </p>
-          <div className="itemBtn">
+          <div className={`itemBtn ${viewMode === "grid" ? "gridView" : ""}`}>
             <Button
               className={`button ${
                 todo.completed ? "doneBtn" : "notCompletedBtn"
@@ -104,7 +119,7 @@ const ItemTodo = ({ todo }) => {
       )}
     </div>
   );
-};
+});
 ItemTodo.propTypes = {
   todo: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

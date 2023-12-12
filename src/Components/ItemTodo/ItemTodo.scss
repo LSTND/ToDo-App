@@ -1,16 +1,7 @@
-.itemTodo_container {
-  max-width: 70%;
-  margin: 50px auto;
-  list-style: none;
-  @media (max-width: 404px) {
-    max-width: 100%;
-    margin: 50px auto;
-  }
-  .itemTodo.completed {
-    text-decoration: line-through;
-    color: gray;
-    border: 3px solid grey;
-  }
+.itemTodo.completed {
+  text-decoration: line-through;
+  color: gray;
+  border: 3px solid grey;
 }
 .itemTodo {
   display: flex;
@@ -18,8 +9,24 @@
   border: 3px solid#aa8bff;
   border-radius: 7px;
   margin-bottom: 15px;
-  padding: 5px 10px;
-
+  padding: 10px 10px;
+  &.gridView {
+    flex-direction: column;
+    gap: 20px;
+    width: 28%;
+    @media (max-width: 1100px) {
+      width: 32%;
+    }
+    @media (max-width: 769px) {
+      width: 41%;
+    }
+    @media (max-width: 567px) {
+      width: 70%;
+    }
+    @media (max-width: 340px) {
+      width: 85%;
+    }
+  }
   &:hover {
     border: 2px solid #351752;
   }
@@ -38,7 +45,9 @@
     width: 50%;
     cursor: pointer;
     color: #351752;
-
+    &.gridView {
+      width: auto;
+    }
     &:hover {
       color: #e094ff;
     }
@@ -53,10 +62,14 @@
     }
   }
 }
+
 .itemBtn {
   display: flex;
   gap: 15px;
   justify-content: end;
+  &.gridView {
+    margin-top: auto;
+  }
   @media (max-width: 485px) {
     gap: 0px;
   }
@@ -68,7 +81,6 @@
   border: none;
   margin: auto;
   cursor: pointer;
-
   &:hover {
     background-color: #aa8bff89;
   }
@@ -110,6 +122,15 @@
     color: #351752;
     margin-top: 15px;
     width: 400px;
+    &.gridView {
+      width: 200px;
+      @media (max-width: 970px) {
+        width: 80%;
+      }
+      @media (max-width: 911px) {
+        width: 70%;
+      }
+    }
     @media (max-width: 778px) {
       width: 100%;
     }
@@ -120,6 +141,17 @@
       display: flex;
       width: 100%;
       justify-content: center;
+    }
+    &.gridView {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      @media (max-width: 598px) {
+        margin-left: -14px;
+      }
+      @media (max-width: 397px) {
+        margin-left: -24px;
+      }
     }
   }
 }
