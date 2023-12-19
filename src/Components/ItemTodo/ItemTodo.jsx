@@ -1,6 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
+import cx from "classnames";
 import { memo, useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { taskEdit, taskDelete, taskCompleted } from "../../redux/actions";
@@ -60,24 +61,17 @@ const ItemTodo = memo(({ todo }) => {
 
   return (
     <div
-      className={`itemTodo ${todo.completed ? "completed" : ""} ${
-        viewMode === "grid" ? "gridView" : ""
-      }`}
-    >
+      className={cx( "itemTodo",{ completed: todo.completed },{ gridView: viewMode === "grid" })}>
       {/* Conditional rendering depending on editing mode for input  */}
       {isEditing && editTaskId === todo.id ? (
         <div className="editTask_container">
           <input
-            className={`editTask_input ${
-              viewMode === "grid" ? "gridView" : ""
-            }`}
+            className={cx("editTask_input", { gridView: viewMode === "grid" })}
             type="text"
             value={editTask}
             onChange={(e) => setEditTask(e.target.value)}
           />
-          <div
-            className={`editTask_btn ${viewMode === "grid" ? "gridView" : ""}`}
-          >
+          <div className={cx("editTask_btn", { gridView: viewMode === "grid" })}>
             <Button
               text="Save"
               className="newTask_btn btn"
@@ -92,22 +86,17 @@ const ItemTodo = memo(({ todo }) => {
         </div>
       ) : (
         <>
-          <p
-            className={`itemTodo_title ${todo.completed ? "completed" : ""}${
-              viewMode === "grid" ? "gridView" : ""
-            }`}
-          >
+          <p className={cx("itemTodo_title",{ completed: todo.completed }, { gridView: viewMode === "grid" })} >
             {todo.title}
           </p>
           <div className={`itemBtn ${viewMode === "grid" ? "gridView" : ""}`}>
             <Button
-              className={`button ${
-                todo.completed ? "doneBtn" : "notCompletedBtn"
-              }`}
+              className={cx("button", {doneBtn: todo.completed, notCompletedBtn: !todo.completed,
+              })}
               onClick={() => handleToggleComplete(todo.id)}
             />
             <Button
-              className={`button editBtn ${todo.completed ? "completed" : ""}`}
+              className={cx("button", "editBtn", { completed: todo.completed })}
               onClick={() => handleEditClick(todo.id, todo.title)}
             />
             <Button

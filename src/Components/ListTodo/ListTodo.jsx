@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import cx from "classnames";
 import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ItemTodo from "../ItemTodo/ItemTodo";
@@ -58,11 +59,7 @@ const ListTodo = () => {
           />
         </div>
       </div>
-      <ul
-        className={`itemTodo_container ${
-          viewMode === "grid" ? "gridView" : ""
-        }`}
-      >
+      <ul className={cx("itemTodo_container", { gridView: viewMode === "grid" } )}>
         {/* Displaying tasks using the ItemTodo component */}
         {paginatedTodos.map(
           (task) => task && <ItemTodo key={task.id} todo={task} />
